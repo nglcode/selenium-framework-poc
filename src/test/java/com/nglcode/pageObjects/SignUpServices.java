@@ -1,7 +1,10 @@
 package com.nglcode.pageObjects;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,18 +14,18 @@ public class SignUpServices {
     @Autowired
     private SignUpPageObject signUpPageObject;
 
+    @Autowired
     private WebDriver driver;
 
     @Autowired
-    public SignUpServices(WebDriver driver) {
-        this.driver = driver;
-    }
+    WebDriverWait wait;
 
     public void goTo(String url) {
         this.driver.get(url);
     }
 
     public void writeFirstName(String firstName) {
+        this.wait.until(ExpectedConditions.visibilityOf(this.signUpPageObject.getFirstNameTextBox()));
         this.signUpPageObject.getFirstNameTextBox().sendKeys(firstName);
     }
 

@@ -15,7 +15,8 @@ import java.time.Duration;
 
 @Configuration
 @ComponentScan(basePackages = "com.nglcode")
-@PropertySource("classpath:/application.properties")
+@PropertySource("classpath:/application-${environment:dev}.properties")
+//esta variable environment se pasa por linea de comandos, i.e.: mvn clean test -Denvironment=prod
 public class DriverConfig {
 
     @Value("${driver.type}")
