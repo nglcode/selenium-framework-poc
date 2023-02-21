@@ -1,22 +1,30 @@
-package stepDefinitions;
+package com.nglcode.stepDefinitions;
 
+import com.nglcode.conf.DriverConfig;
+import com.nglcode.enums.Browser;
+import com.nglcode.pageObjects.SignUpServices;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import pageObjects.SignUpPageObject;
-import pageObjects.SignUpServices;
-import utils.HookDriver;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
 
+@ContextConfiguration(classes = {DriverConfig.class})
 public class SignUpStepDefs {
 
     // https://demo.automationtesting.in/Register.html
 
+    @Autowired
+    private SignUpServices signUpServices;
+
+    @Value("${url}")
+    private String url;
+
     @Given("^Pepito wants to have an account$")
     public void pepito_wants_to_have_an_account() {
-        SignUpServices signUpServices = new SignUpServices(HookDriver.driver);
-        signUpServices.goTo("https://demo.automationtesting.in/Register.html");
+
+        signUpServices.goTo(url);
         signUpServices.writeFirstName("Marco");
         signUpServices.writeLastName("Polo");
         signUpServices.writeEmail("marco@polo.ccom");
