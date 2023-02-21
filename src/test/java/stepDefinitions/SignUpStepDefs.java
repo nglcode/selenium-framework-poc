@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.SignUpPageObject;
 import pageObjects.SignUpServices;
+import utils.HookDriver;
 
 public class SignUpStepDefs {
 
@@ -14,10 +15,7 @@ public class SignUpStepDefs {
 
     @Given("^Pepito wants to have an account$")
     public void pepito_wants_to_have_an_account() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-        // System.getProperty("user.dir")+
-        WebDriver driver = new ChromeDriver();
-        SignUpServices signUpServices = new SignUpServices(driver);
+        SignUpServices signUpServices = new SignUpServices(HookDriver.driver);
         signUpServices.goTo("https://demo.automationtesting.in/Register.html");
         signUpServices.writeFirstName("Marco");
         signUpServices.writeLastName("Polo");
@@ -25,8 +23,7 @@ public class SignUpStepDefs {
         signUpServices.writePhone("2222226655");
 //        signUpServices.selectMale();
         signUpServices.clickOnSubmit();
-        signUpServices.selectCountry("Australia");
-        driver.quit();
+//        signUpServices.selectCountry("Australia");
     }
 
     @When("^he sends required information to get the account$")
