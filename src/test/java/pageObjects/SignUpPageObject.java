@@ -1,54 +1,56 @@
 package pageObjects;
 
-import org.openqa.selenium.By;
+import lombok.Getter;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+@Getter
 public class SignUpPageObject {
 
-    private WebDriver driver;
-
     public SignUpPageObject(WebDriver driver) {
-        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    private By firstNameTextBox = By.xpath("//input[@ng-model='FirstName']");
-    private By lastNameTextBox = By.xpath("//input[@ng-model='LastName']");
-    private By emailAddress = By.xpath("//input[@type='email']");
-    private By phone = By.xpath("//input[@type='tel']");
-    private By genderMale = By.xpath("//input[@value='Male']");
-    private By genderFemale = By.xpath("//input[@value='FeMale']");
-    private By country = By.id("countries");
-    private By dateOfBirthYear = By.id("yearbox");
-    private By dateOfBirthMonth = By.xpath("//select[@ng-model='monthbox']");
-    private By dateOfBirthDay = By.id("daybox");
-    private By password = By.id("firstpassword");
-    private By confirmPassword = By.id("secondpassword");
-    private By submit = By.id("submitbtn");
+    @FindBy(xpath = "//input[@ng-model='FirstName']")
+    private WebElement firstNameTextBox;
 
-    public void writeFirstName(String firstname) {
-        this.driver.findElement(this.firstNameTextBox).sendKeys(firstname);
-    }
+    @FindBy(xpath = "//input[@ng-model='LastName']")
+    private WebElement lastNameTextBox;
 
-    public void writeLastName(String lastname) {
-        this.driver.findElement(this.lastNameTextBox).sendKeys(lastname);
-    }
+    @FindBy(xpath = "//input[@type='email']")
+    private WebElement emailAddress;
 
-    public void writeEmail(String email) {
-        this.driver.findElement(this.emailAddress).sendKeys(email);
-    }
+    @FindBy(xpath = "//input[@type='tel']")
+    private WebElement phone;
 
-    public void writePhone(String phone) {
-        this.driver.findElement(this.phone).sendKeys(phone);
-    }
+    @FindBy(xpath = "//input[@value='Male']")
+    private WebElement genderMale;
 
-    public void selectMale() {
-        this.driver.findElement(this.genderMale).click();
-    }
+    @FindBy(xpath = "//input[@value='FeMale']")
+    private WebElement genderFemale;
 
-    public void selectFemale() {
-        this.driver.findElement(this.genderFemale).click();
-    }
+    @FindBy(id = "countries")
+    private WebElement country;
 
+    @FindBy(id = "yearbox")
+    private WebElement dateOfBirthYear;
+
+    @FindBy(xpath = "//select[@ng-model='monthbox']")
+    private WebElement dateOfBirthMonth;
+
+    @FindBy(id = "daybox")
+    private WebElement dateOfBirthDay;
+
+    @FindBy(id = "firstpassword")
+    private WebElement password;
+
+    @FindBy(id = "secondpassword")
+    private WebElement confirmPassword;
+
+    @FindBy(id = "submitbtn")
+    private WebElement submit;
 
 
 }
