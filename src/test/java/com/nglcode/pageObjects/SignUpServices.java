@@ -1,5 +1,6 @@
 package com.nglcode.pageObjects;
 
+import com.nglcode.enums.Gender;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -77,11 +78,11 @@ public class SignUpServices {
         this.signUpPageObject.getSubmit().click();
     }
 
-//    public void selectGender(Gender gender) {
-//        if (gender == Gender.female) {
-//            selectFemale();
-//        } else {
-//            selectMale();
-//        }
-//    }
+    public void selectGender(Gender gender) {
+        if (gender == Gender.female) {
+            selectFemale();
+        } else {
+            selectMale();
+        }
+    }
 }
