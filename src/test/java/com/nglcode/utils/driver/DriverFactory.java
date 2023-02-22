@@ -1,4 +1,4 @@
-package com.nglcode.utils;
+package com.nglcode.utils.driver;
 
 
 import com.nglcode.enums.Browser;
